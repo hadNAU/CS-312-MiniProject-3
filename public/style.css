@@ -1,0 +1,129 @@
+/* Based on the original simple green theme, with responsive layouts. */
+:root {
+    --background: #edf5ed;
+    --green: #276b3b;
+    --green-dark: #1b4e2a;
+    --border: #d7e3d9;
+    --text: #203128;
+    --muted: #607267;
+    --white: #fff;
+    --danger: #a83232;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font: 16px/1.55 Arial, sans-serif;
+}
+
+a { color: var(--green); }
+a:hover { color: var(--green-dark); }
+
+h1, h2, h3 { line-height: 1.25; margin: 0 0 12px; }
+p { margin: 0 0 16px; }
+
+.site-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    max-width: 880px;
+    min-height: 74px;
+    margin: auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.brand { font-size: 1.5rem; font-weight: 800; text-decoration: none; }
+.nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+.nav-links a { text-decoration: none; font-weight: 600; }
+.nav-greeting { color: var(--muted); }
+
+.container { max-width: 880px; margin: auto; padding: 32px 20px 48px; }
+.page-heading { margin: 5px 0 28px; }
+.page-heading h1 { font-size: clamp(2rem, 5vw, 2.6rem); }
+.page-heading p:last-child { color: var(--muted); }
+.eyebrow { color: var(--green); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+.panel, .post {
+    background-color: var(--white);
+    padding: 26px;
+    margin-bottom: 22px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(25, 72, 34, .035);
+}
+
+.stacked-form { display: flex; flex-direction: column; gap: 10px; }
+.stacked-form label { font-weight: 700; }
+
+input, textarea {
+    width: 100%;
+    padding: 11px 12px;
+    font: inherit;
+    border: 1px solid #aebfb1;
+    border-radius: 6px;
+    background: var(--white);
+}
+
+textarea { resize: vertical; }
+input:focus, textarea:focus { outline: 2px solid #7ab98d; outline-offset: 1px; }
+
+button, .secondary-button, .nav-button {
+    cursor: pointer;
+    font: inherit;
+    border-radius: 6px;
+    padding: 9px 17px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.primary-button, .nav-button {
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: var(--white) !important;
+    align-self: flex-start;
+}
+.primary-button:hover, .nav-button:hover { background: var(--green-dark); }
+.secondary-button { background: #f1f6f1; border: 1px solid #c1d2c4; color: var(--green); }
+.secondary-button:hover { background: #e5f0e6; }
+.danger-button { background: #fff; border: 1px solid #e0b1b1; color: var(--danger); }
+.danger-button:hover { background: #fff4f4; }
+
+.inline-form { display: inline; margin: 0; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 34px 0 14px; }
+.section-heading h2 { margin: 0; }
+.post-count { font-size: .9rem; color: var(--muted); }
+.post h3 { font-size: 1.35rem; }
+.post-meta { color: var(--muted); font-size: .9rem; }
+.post-meta strong { color: var(--text); }
+.post-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+.post-actions, .form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.post-actions { margin-top: 20px; }
+
+.form-panel { max-width: 620px; margin: 30px auto; }
+.auth-panel { max-width: 480px; }
+.form-hint { margin: 0 0 12px; color: var(--muted); font-size: .88rem; }
+.below-form { margin: 18px 0 0; }
+.intro-panel p { margin: 0; }
+.alert, .success { padding: 12px 14px; border-radius: 5px; margin: 16px 0; }
+.alert { color: #8a2323; background: #fff1f1; border: 1px solid #f3c8c8; }
+.success { color: #215c32; background: #e8f5e9; border: 1px solid #b8dcbc; }
+.site-footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 12px 20px 28px; }
+
+@media (max-width: 600px) {
+    .nav-container { align-items: flex-start; }
+    .nav-links { justify-content: flex-end; gap: 10px; }
+    .nav-greeting { width: 100%; text-align: right; font-size: .9rem; }
+    .container { padding: 24px 14px; }
+    .panel, .post { padding: 18px; }
+    .form-panel { margin: 10px auto 22px; }
+}

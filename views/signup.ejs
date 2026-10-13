@@ -1,0 +1,24 @@
+<%- include("partials/header", { pageTitle: "Sign Up" }) %>
+<section class="panel form-panel auth-panel">
+    <p class="eyebrow">Join the conversation</p>
+    <h1>Create an Account</h1>
+    <p>Choose a user ID to start publishing.</p>
+
+    <% if (error) { %><p class="alert" role="alert"><%= error %></p><% } %>
+
+    <form action="/signup" method="POST" class="stacked-form">
+        <label for="user_id">User ID</label>
+        <input type="text" id="user_id" name="user_id" maxlength="255" value="<%= values.user_id || '' %>" autocomplete="username" required>
+
+        <label for="name">Display Name</label>
+        <input type="text" id="name" name="name" maxlength="255" value="<%= values.name || '' %>" autocomplete="name" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+        <p class="form-hint">At least 8 characters. Passwords are securely hashed, not stored as plain text.</p>
+
+        <button class="primary-button" type="submit">Create Account</button>
+    </form>
+    <p class="below-form">Already have an account? <a href="/signin">Sign in</a>.</p>
+</section>
+<%- include("partials/footer") %>

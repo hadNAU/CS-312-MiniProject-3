@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %> | Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a class="brand" href="/">Blog</a>
+            <div class="nav-links">
+                <% if (currentUser) { %>
+                    <span class="nav-greeting">Hi, <%= currentUser.name %></span>
+                    <form action="/signout" method="POST" class="inline-form">
+                        <button class="nav-button" type="submit">Sign out</button>
+                    </form>
+                <% } else { %>
+                    <a href="/signin">Sign in</a>
+                    <a href="/signup" class="nav-button">Sign up</a>
+                <% } %>
+            </div>
+        </nav>
+    </header>
+    <main class="container">

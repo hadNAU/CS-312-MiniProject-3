@@ -1,0 +1,21 @@
+<%- include("partials/header", { pageTitle: "Sign In" }) %>
+<section class="panel form-panel auth-panel">
+    <p class="eyebrow">Welcome back</p>
+    <h1>Sign In</h1>
+    <p>Sign in to create, edit, and delete your posts.</p>
+
+    <% if (created) { %><p class="success" role="status">Account created! You can sign in now.</p><% } %>
+    <% if (error) { %><p class="alert" role="alert"><%= error %></p><% } %>
+
+    <form action="/signin" method="POST" class="stacked-form">
+        <label for="user_id">User ID</label>
+        <input type="text" id="user_id" name="user_id" maxlength="255" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+        <button class="primary-button" type="submit">Sign In</button>
+    </form>
+    <p class="below-form">New here? <a href="/signup">Create an account</a>.</p>
+</section>
+<%- include("partials/footer") %>

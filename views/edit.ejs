@@ -1,0 +1,21 @@
+<%- include("partials/header", { pageTitle: "Edit Post" }) %>
+<section class="panel form-panel">
+    <h1>Edit Post</h1>
+    <p>Update your title and content below.</p>
+
+    <% if (error) { %><p class="alert" role="alert"><%= error %></p><% } %>
+
+    <form action="/edit/<%= post.blog_id %>" method="POST" class="stacked-form">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" maxlength="255" value="<%= post.title %>" required>
+
+        <label for="content">Blog</label>
+        <textarea id="content" name="content" rows="8" maxlength="10000" required><%= post.body %></textarea>
+
+        <div class="form-actions">
+            <button class="primary-button" type="submit">Save Changes</button>
+            <a class="secondary-button" href="/">Cancel</a>
+        </div>
+    </form>
+</section>
+<%- include("partials/footer") %>

@@ -1,0 +1,65 @@
+<%- include("partials/header", { pageTitle: "Home" }) %>
+
+<section class="page-heading">
+    <p class="eyebrow">Community Journal</p>
+    <h1>Blog Posts</h1>
+    <p>Share ideas, discoveries, and stories.</p>
+</section>
+
+<% if (currentUser) { %>
+    <section class="panel" aria-labelledby="create-heading">
+        <h2 id="create-heading">Create a Post</h2>
+        <% if (error) { %><p class="alert" role="alert"><%= error %></p><% } %>
+        <form action="/posts" method="POST" class="stacked-form">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" maxlength="255" required placeholder="Give your post a title">
+
+            <label for="content">Blog</label>
+            <textarea id="content" name="content" rows="6" maxlength="10000" required placeholder="What's on your mind?"></textarea>
+
+            <button class="primary-button" type="submit">Create Post</button>
+        </form>
+        <p class="form-hint">Posting as <strong><%= currentUser.name %></strong></p>
+    </section>
+<% } else { %>
+    <section class="panel intro-panel">
+        <p><a href="/signin">Sign in</a> or <a href="/signup">create an account</a> to write your own post.</p>
+    </section>
+<% } %>
+
+<section aria-labelledby="posts-heading">
+    <div class="section-heading">
+        <h2 id="posts-heading">Recent Posts</h2>
+        <span class="post-count"><%= posts.length %> <%= posts.length === 1 ? "post" : "posts" %></span>
+    </div>
+
+    <% if (posts.length === 0) { %>
+        <div class="panel"><p>No posts yet. Be the first to write one!</p></div>
+    <% } %>
+
+    <% posts.forEach(post => { %>
+        <article class="post">
+            <h3><%= post.title %></h3>
+            <p class="post-meta">
+                By <strong><%= post.creator_name %></strong>
+                <span aria-hidden="true">·</span>
+                <time datetime="<%= new Date(post.date_created).toISOString() %>">
+                    <%= new Date(post.date_created).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" }) %>
+                </time>
+            </p>
+            <p class="post-body"><%= post.body %></p>
+
+            <% if (currentUser && currentUser.userId === post.creator_user_id) { %>
+                <div class="post-actions">
+                    <a class="secondary-button" href="/edit/<%= post.blog_id %>">Edit</a>
+                    <form action="/delete/<%= post.blog_id %>" method="POST" class="inline-form"
+                          onsubmit="return confirm('Delete this post permanently?');">
+                        <button class="danger-button" type="submit">Delete</button>
+                    </form>
+                </div>
+            <% } %>
+        </article>
+    <% }) %>
+</section>
+
+<%- include("partials/footer") %>
